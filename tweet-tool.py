@@ -6,8 +6,12 @@ try:
 except:
     raise ImportError('python-twitter is required!')
 
-import os, sys, tempfile
+import os, sys, tempfile, logging
 from ConfigParser import RawConfigParser
+
+logfile = os.path.join(tempfile.gettempdir(), 'tweet-tool.log')
+logging.basicConfig(level=logging.INFO, filename=logfile)
+log = logging.getLogger(__name__)
 
 class TweetToolError(Exception):
     pass
@@ -70,16 +74,18 @@ def tweet(oauth_settings, message):
         return status.id, status.text
 
 if __name__ == '__main__':
+    log.info('starting...')
+    log.info('getting parameters...')
     params = get_params(sys.argv)
+    log.info('setting up...')
     config(params)
     interval = int(params.get('interval', 1))
+    log.info('interval: %s, current_interval: %s' %  (interval, get_interval_count()) ) 
 
     if get_interval_count() == interval:
         update_interval_count(1)
-        print tweet(
-            params['oauth_settings'],
-            params['message']
-        )
+        post = tweet(params['oauth_settings'], params['message'])
+        log.info(post)
     elif get_interval_count() > interval:
         update_interval_count(1)
     else:
