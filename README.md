@@ -42,4 +42,16 @@ This is a very useful feature for automatic calls from apps. Avoid nagging his f
 python the-path-where-you-placed-the-file/tweet-tool.py '%t by %a #NowPlaying' --interval=3
 ```
 
+##Installation
+
+```bash
+$ pip install tweet-command-line-tool
+```
+
+or download/clone the package and
+
+```bash
+$ python setup install
+```
+
 That's it.
