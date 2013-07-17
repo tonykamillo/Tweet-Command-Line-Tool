@@ -9,8 +9,8 @@ from setuptools import setup
 
 setup(
     name='Tweet-Command-Line-Tool',
-    version='0.5',
-    url='http://github.com/sacanix/Flask-Nytro',
+    version='0.6',
+    url='https://github.com/sacanix/Tweet-Command-Line-Tool',
     license='BSD',
     author='Tony Kamillo (Sacanix)',
     author_email='tonysacanix@gmail.com',
